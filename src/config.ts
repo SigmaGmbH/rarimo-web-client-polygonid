@@ -22,6 +22,7 @@ export const RELAYER_RELAY_CHAIN_NAMES: Record<SUPPORTED_CHAINS, string> = {
   MAINNET: '',
   ARBITRUM: '',
   XDC: '',
+  SWISSTRONIK: 'Swisstronik',
 }
 
 export const config = {

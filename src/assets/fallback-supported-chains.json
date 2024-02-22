@@ -12,6 +12,19 @@
     "type": "EVM",
     "icon": "ethereum"
   },
+  "SWISSTRONIK": {
+    "id": "1291",
+    "name": "Swisstronik",
+    "rpcUrl": "https://json-rpc.testnet.swisstronik.com",
+    "explorerUrl": "https://explorer-evm.testnet.swisstronik.com/",
+    "token": {
+      "name": "SWTR",
+      "symbol": "SWTR",
+      "decimals": 18
+    },
+    "type": "EVM",
+    "icon": "swisstronik"
+  },
   "POLYGON": {
     "id": "137",
     "name": "Polygon",

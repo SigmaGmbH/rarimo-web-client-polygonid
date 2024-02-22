@@ -7,6 +7,7 @@ import {
   PROVIDERS,
 } from '@distributedlab/w3p'
 import type { ZKProof } from '@iden3/js-jwz'
+import { encryptDataField } from '@swisstronik/utils'
 import { FC, HTMLAttributes, useCallback, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -71,11 +72,16 @@ const AuthConfirmation: FC<Props> = () => {
         [zkProof.proof.pi_c[0], zkProof.proof.pi_c[1]],
       )
 
+      const [encryptedData] = await encryptDataField(
+        'https://json-rpc.testnet.swisstronik.com',
+        txBody.data,
+      )
+
       const tx = await provider?.signAndSendTx?.({
         to: config?.[
           `QUERY_VERIFIER_CONTRACT_ADDRESS_${selectedChainToPublish}`
         ],
-        ...txBody,
+        data: encryptedData,
       })
 
       verificationSuccessTx.set((tx as EthTransactionResponse).transactionHash)
