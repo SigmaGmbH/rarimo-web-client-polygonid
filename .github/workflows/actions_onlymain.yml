@@ -1,33 +1,45 @@
+name: Build Rarimo Web GH Pages
 on:
   push:
     branches:
       - 'main'
 
-jobs:
-  converge:
-    name: Converge
-    runs-on: ubuntu-latest
-    steps:
 
-      - name: Checkout code
+jobs:
+  build:
+    name: GH Pages Rarimo Web
+    runs-on: ubuntu-latest
+    permissions: write-all
+    environment: production
+
+    steps:
+      - name: Checkout repository and submodules
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          submodules: 'recursive'
 
-      - name: Install werf
-        uses: werf/actions/install@v1.2
-
-      - name: Log in to registry
-        # This is where you will update the personal access token to GITHUB_TOKEN
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u $ --password-stdin
-
-      - name: Run echo
+      - name: 'Extend memory'
         run: |
-          werf version
-          docker version
-          echo $GITHUB_REPOSITORY
-          echo $GITHUB_SHA
-      - name: Run Build
-        run: |
-          . $(werf ci-env github --as-file)
-          werf export web --tag ghcr.io/$GITHUB_REPOSITORY:$GITHUB_SHA
+          export NODE_OPTIONS="--max_old_space_size=16384"
+
+      - name: Set Node.js 18.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.x
+
+      - name: Run package install
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: install
+
+      - name: Run build
+        uses: borales/actions-yarn@v4
+        with:
+          cmd: run build
+
+      - name: Deploy landing to Github Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: dist
