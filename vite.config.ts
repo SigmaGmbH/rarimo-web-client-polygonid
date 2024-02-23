@@ -34,6 +34,7 @@ export default defineConfig(({ mode }) => {
     define: {
       'process.env': {},
     },
+    base: '/rarimo-web-client-polygonid/',
     publicDir: 'static',
     plugins: [
       splitVendorChunkPlugin(),
