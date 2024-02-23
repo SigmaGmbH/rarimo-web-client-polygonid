@@ -2,10 +2,6 @@
   "name": "react-template",
   "private": true,
   "version": "1.0.0",
-  "gitHooks": {
-    "pre-commit": "tsc && yarn lint",
-    "pre-push": "yarn rsc"
-  },
   "scripts": {
     "vite-dev-server": "vite",
     "vite-build": "vite build",
@@ -93,6 +89,5 @@
     "vite-plugin-svg-icons": "^2.0.1",
     "vite-tsconfig-paths": "^4.0.3",
     "yorkie": "^2.0.0"
-  },
-  "packageManager": "yarn@3.6.1"
+  }
 }
