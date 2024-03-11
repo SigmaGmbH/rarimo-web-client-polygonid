@@ -17,13 +17,8 @@ const AuthSuccess: FC<Props> = () => {
   const { verificationSuccessTx } = useZkpContext()
 
   const METADATA: Record<ClaimTypes, { label: string }> = {
-    [ClaimTypes.KYCAgeCredential]: {
-      label: `Proof of Age: older than ${
-        new Date().getFullYear() -
-        new Date(
-          String(CLAIM_TYPES_CHECKS_VALUES_MAP[ClaimTypes.KYCAgeCredential]),
-        ).getFullYear()
-      }`,
+    [ClaimTypes.AnimaProofOfIdentity]: {
+      label: `KYC Validated - true`,
     },
   }
 
@@ -60,7 +55,7 @@ const AuthSuccess: FC<Props> = () => {
 
       <div className='auth-success__minted-nft'>
         <span className='auth-success__minted-nft-title'>
-          {`You’ve received the SBT `}
+          {`Your KYC is validated`}
         </span>
 
         <div className='auth-success__minted-nft-card'>
@@ -74,33 +69,8 @@ const AuthSuccess: FC<Props> = () => {
 
           <div className='auth-success__minted-nft-card-details'>
             <span className='auth-success__minted-nft-card-title'>
-              {`PolygonID × Rarimo`}
+              {`Swisstronik x Anima`}
             </span>
-
-            {config?.[
-              `VERIFIED_SBT_CONTRACT_ADDRESS_${config.DEFAULT_CHAIN}`
-            ] ? (
-              <span className='auth-success__minted-nft-card-subtitle'>
-                <a
-                  href={provider?.getAddressUrl?.(
-                    config.SUPPORTED_CHAINS_DETAILS[config.DEFAULT_CHAIN],
-                    config[
-                      `VERIFIED_SBT_CONTRACT_ADDRESS_${config.DEFAULT_CHAIN}`
-                    ] ?? '',
-                  )}
-                  target={'_blank'}
-                  rel='noreferrer'
-                >
-                  {abbrCenter(
-                    config[
-                      `VERIFIED_SBT_CONTRACT_ADDRESS_${config.DEFAULT_CHAIN}`
-                    ] ?? '',
-                  )}
-                </a>
-              </span>
-            ) : (
-              <></>
-            )}
           </div>
         </div>
       </div>
@@ -109,7 +79,7 @@ const AuthSuccess: FC<Props> = () => {
         <div className='auth-success__metadata'>
           <div className='auth-success__metadata-item'>
             <span className='auth-success__metadata-item-label'>
-              {METADATA[ClaimTypes.KYCAgeCredential].label}
+              {METADATA[ClaimTypes.AnimaProofOfIdentity].label}
             </span>
             <div className='auth-success__metadata-item-value'>
               <Icon

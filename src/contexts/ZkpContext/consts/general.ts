@@ -1,45 +1,23 @@
 import { ClaimTypes } from '@/contexts/ZkpContext/enums'
 
 export const CLAIM_TYPES_CHECKS_VALUES_MAP: Record<ClaimTypes, unknown> = {
-  [ClaimTypes.KYCAgeCredential]: '2002.01.01',
-}
-
-export const CLAIM_TYPES_MAP_OFF_CHAIN: Record<ClaimTypes, unknown> = {
-  [ClaimTypes.KYCAgeCredential]: {
-    id: 1,
-    circuitId: 'credentialAtomicQueryMTPV2',
-    query: {
-      allowedIssuers: ['*'],
-      context:
-        'https://raw.githubusercontent.com/iden3/claim-schema-vocab/main/schemas/json-ld/kyc-v3.json-ld',
-      credentialSubject: {
-        birthday: {
-          $lt: +String(
-            CLAIM_TYPES_CHECKS_VALUES_MAP[ClaimTypes.KYCAgeCredential],
-          ).replaceAll('.', ''),
-        },
-      },
-      type: ClaimTypes.KYCAgeCredential,
-    },
-  },
+  [ClaimTypes.AnimaProofOfIdentity]: true
 }
 
 export const CLAIM_TYPES_MAP_ON_CHAIN: Record<ClaimTypes, unknown> = {
-  [ClaimTypes.KYCAgeCredential]: {
+  [ClaimTypes.AnimaProofOfIdentity]: {
     id: 1,
     circuitId: 'credentialAtomicQueryMTPV2OnChain',
     query: {
       allowedIssuers: ['*'],
       context:
-        'https://raw.githubusercontent.com/iden3/claim-schema-vocab/main/schemas/json-ld/kyc-v3.json-ld',
+        'https://raw.githubusercontent.com/anima-protocol/claims-polygonid/main/schemas/json-ld/poi-v1.json-ld',
       credentialSubject: {
-        birthday: {
-          $lt: +String(
-            CLAIM_TYPES_CHECKS_VALUES_MAP[ClaimTypes.KYCAgeCredential],
-          ).replaceAll('.', ''),
+        kyc_validated: {
+          $eq: CLAIM_TYPES_CHECKS_VALUES_MAP[ClaimTypes.AnimaProofOfIdentity],
         },
       },
-      type: ClaimTypes.KYCAgeCredential,
+      type: ClaimTypes.AnimaProofOfIdentity,
     },
   },
 }

@@ -261,7 +261,7 @@ const ZkpContextProvider: FC<Props> = ({ children, ...rest }) => {
       if (!(await isStateTransitionValid(jwzToken))) {
         bus.emit(
           BUS_EVENTS.warning,
-          `Something wen wrong, looks like you need to regenerate proof, please reload page and try again`,
+          `Something went wrong, looks like you need to regenerate proof, please reload page and try again`,
         )
 
         return
@@ -275,7 +275,7 @@ const ZkpContextProvider: FC<Props> = ({ children, ...rest }) => {
   const createProveRequest = useCallback(async () => {
     const proveRequest = await buildRequestOnChain(
       config.CALLBACK_URL,
-      ClaimTypes.KYCAgeCredential,
+      ClaimTypes.AnimaProofOfIdentity,
     )
 
     setProveRequest(JSON.stringify(proveRequest.request))

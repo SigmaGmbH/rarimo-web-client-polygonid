@@ -2,4 +2,3 @@
 /* tslint:disable */
 /* eslint-disable */
 export { QueryVerifier__factory } from "./QueryVerifier__factory";
-export { VerifiedSBT__factory } from "./VerifiedSBT__factory";

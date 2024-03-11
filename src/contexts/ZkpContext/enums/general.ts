@@ -1,3 +1,3 @@
 export enum ClaimTypes {
-  KYCAgeCredential = 'KYCAgeCredential',
+  AnimaProofOfIdentity = 'AnimaProofOfIdentity'
 }

@@ -34,7 +34,6 @@ export default defineConfig(({ mode }) => {
     define: {
       'process.env': {},
     },
-    base: '/rarimo-web-client-polygonid/',
     publicDir: 'static',
     plugins: [
       splitVendorChunkPlugin(),
@@ -53,10 +52,6 @@ export default defineConfig(({ mode }) => {
           initialIsOpen: false,
         },
         typescript: true,
-        eslint: {
-          lintCommand:
-            'eslint "{src,config}/**/*.{jsx,tsx}" --cache --max-warnings=0',
-        },
       }),
       ...(isAnalyze
         ? [
@@ -95,12 +90,10 @@ export default defineConfig(({ mode }) => {
         ),
 
         /* prettier-ignore-start */
-        /* eslint-disable */
         '@iden3/js-iden3-core': path.resolve(__dirname, 'node_modules/@iden3/js-iden3-core/dist/esm/index.js'),
         '@civic/ethereum-gateway-react': path.resolve(__dirname, 'node_modules/@civic/ethereum-gateway-react/dist/esm/index.js'),
         '@rarimo/rarime-connector': path.resolve(__dirname, 'node_modules/@rarimo/rarime-connector/dist/index.js'),
         '@iden3/js-crypto': path.resolve(__dirname, 'node_modules/@iden3/js-crypto/dist/esm_esbuild/index.js'),
-        /* eslint-enable */
         /* prettier-ignore-end */
       },
     },
